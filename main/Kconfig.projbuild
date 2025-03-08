@@ -138,6 +138,14 @@ choice BOARD_TYPE
         bool "SenseCAP Watcher"
 endchoice
 
+config KAUTISM_TESTING_CODE
+    bool "啟用自訂功能"
+    default n
+    depends on BOARD_TYPE_ESP32S3_Touch_LCD_1_46
+    help
+        自動熄背燈、自訂介面
+        只在Waveshare ESP32-S3-Touch-LCD-1.46上測試過
+
 choice DISPLAY_OLED_TYPE
     depends on BOARD_TYPE_BREAD_COMPACT_WIFI || BOARD_TYPE_BREAD_COMPACT_ML307 || BOARD_TYPE_BREAD_COMPACT_ESP32
     prompt "OLED Type"

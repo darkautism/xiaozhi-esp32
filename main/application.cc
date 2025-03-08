@@ -734,6 +734,9 @@ void Application::SetDeviceState(DeviceState state) {
         case kDeviceStateIdle:
             display->SetStatus(Lang::Strings::STANDBY);
             display->SetEmotion("neutral");
+#if CONFIG_KAUTISM_TESTING_CODE
+            board.GetBacklight()->SetBrightness(0);
+#endif
 #if CONFIG_USE_AUDIO_PROCESSOR
             audio_processor_.Stop();
 #endif
@@ -748,6 +751,9 @@ void Application::SetDeviceState(DeviceState state) {
             display->SetEmotion("neutral");
             ResetDecoder();
             opus_encoder_->ResetState();
+#if CONFIG_KAUTISM_TESTING_CODE
+            board.GetBacklight()->RestoreBrightness();
+#endif
 #if CONFIG_USE_AUDIO_PROCESSOR
             audio_processor_.Start();
 #endif
