@@ -68,3 +68,10 @@
 
 
 #endif // _BOARD_CONFIG_H_
+
+#define SDCARD_PIN_CLK  14
+#define SDCARD_PIN_CMD  17
+#define SDCARD_PIN_D0   16
+#define SDCARD_PIN_D1   -1
+#define SDCARD_PIN_D2   -1
+#define SDCARD_PIN_D3   -1  

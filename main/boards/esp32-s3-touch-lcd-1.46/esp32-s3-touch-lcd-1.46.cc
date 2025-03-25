@@ -19,6 +19,7 @@
 #include "esp_io_expander_tca9554.h"
 #include "lcd_display.h"
 #include <iot_button.h>
+#include "sdcard.h"
 
 #define TAG "waveshare_lcd_1_46"
 
@@ -113,6 +114,12 @@ private:
                                                                         QSPI_LCD_H_RES * 80 * sizeof(uint16_t));
         ESP_ERROR_CHECK(spi_bus_initialize(QSPI_LCD_HOST, &bus_config, SPI_DMA_CH_AUTO));
     }
+
+    void InitializeSDCard() {
+        ESP_LOGI(TAG, "Initialize SDCard");
+        SD_Init();
+    }
+    
 
     void InitializeSpd2010Display() {
         esp_lcd_panel_io_handle_t panel_io = nullptr;
@@ -224,7 +231,8 @@ public:
         InitializeI2c();
         InitializeTca9554();
         InitializeSpi();
-        InitializeSpd2010Display();
+        InitializeSDCard();
+        Initializespd2010Display();
         InitializeButtons();
         InitializeIot();
         GetBacklight()->RestoreBrightness();
